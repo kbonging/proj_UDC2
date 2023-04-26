@@ -1,28 +1,31 @@
 use bootUdc;
-
+desc member;
 create table board (
 	num				int 			auto_increment,			# 게시글 번호
-    nick			char(30)		not null,				# 작성자 닉네임
-    subject			char(30)		not null,				# 글 제목
+	userid 			char(30)		not null,				# 유저 아이디
+    subject			char(100)		not null,				# 글 제목
     content 		text			null,					# 글 내용
     regTM			datetime		not null,				# 등록일
     readCnt			int 			not	null default 0,		# 조회수
     goodCnt			int 			not null default 0,		# 좋아요
     fileName		char(50)		null,					# 파일 제목
     fileSize	 	int				null,					# 파일 사이즈
-    delCheck		varchar(10) 	default 'N',				# 글 삭제 여부
+    delCheck		varchar(10) 	default 'N',			# 글 삭제 여부
+    category 		int 			not null,				# 카테고리 1=Q&A, 2=후기, 3=잡담
     constraint primary key(num),
     foreign key(userid) references member(userid) on delete cascade
     
 );
+## drop table board;
 
+desc board;
 
 select * from board;
 select * from member order by num desc;
 
 ############ 글 입력 ##################
-insert into board(userid, subject, content, regTM)
-values('lee', '글 제목', '내용', now());
+insert into board(userid, subject, content, regTM, category)
+values('lee', '글 제목', '내용', now(),1);
 insert into board(userid, subject, content, regTM)
 values('messi', '메시 월드컵 우승', '메시 덕에 우승했다', now());
 insert into board(userid, subject, content, regTM)
