@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.project.member.MemberDAO">
+
+    <!--회원가입 등록(insert)-->
+    <insert id="memberInsert" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="num">
+        insert into member(userid, userPwd, uName, nick, uEmail, jumin, tel, zipcode, address, locationName, joinTM)
+        values( #{userid}, #{userPwd}, #{uName}, #{nick}, #{uEmail}, #{jumin}, #{tel} , #{zipcode}, #{address}, #{locationName}, now())
+    </insert>
+
+    <!-- 아이디 중복 체크 -->
+    <select id="idCheck" parameterType="java.util.HashMap" resultType="int">
+        select count(*) from member where userid = #{userid}
+    </select>
+
+    <!-- 로그인 아이디 유무 체크 -->
+    <select id="memberLogin" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select userid, userPwd from member where userid = #{userid} and userPwd = #{userPwd}
+    </select>
+
+</mapper>

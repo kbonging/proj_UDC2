@@ -1,0 +1,149 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* article border 속성 삭제*/
+
+.article_card {
+	border: none !important;
+}
+
+.row.g-0.border.rounded.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-md-250.position-relative
+	{
+	border: none !important;
+}
+/*---------------------*/
+
+/* for debugging, remove/disable when done */
+/* * { outline: 1px dashed }/**/
+
+/***********************/
+/* element definitions */
+/***********************/
+
+.container *{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.footer *, .content * {
+    text-shadow: 1px 1px 1px black;
+}
+.article_card {
+    position: relative;
+
+    margin: 0 auto;
+    width: 800px; /* not responsive!! */
+    aspect-ratio: 2/1;
+    font-family: 'Noto Sans KR', sans-serif;
+    
+    display: inline-block;
+}
+.article_card > * { /* picture and content */
+    position: absolute;
+    inset: 0; /* stretched to fill parent (T/R/B/L) */
+}
+
+/* background picture under all content, stretched to fit parent */
+.article_card .bg-pic     { z-index: -1 }
+.article_card .bg-pic img { display: block; width: 100%; height: 100%; object-fit: cover }
+
+/* Flexbox container over card background image */
+.article_card .inner {
+    z-index: 1;
+    display: flex; flex-flow: column wrap;
+    padding: 1rem;
+
+    justify-content: flex-end; /* move all elements to .inner bottom */
+}
+
+.article_card .inner > * {
+    /* all card .inner elements are FBL column containers */
+    display: flex; flex-flow: column wrap;
+ } 
+
+/********************************/
+/* All hover animation settings */
+/********************************/
+/*
+    element defaults before animation with transitions set,
+    followed by animation settings.
+*/
+.article_card {
+    /* trasition properties, delay, behaviour */
+    --tr-f: all 1.0s ease-in-out; /* fast transition */
+    --tr-s: all 1.0s ease-in-out; /* slow */
+}
+
+.article_card .header { 
+    flex-basis: 0%; /* makes it shrink to HTML default */
+    font-size: 1.5rem;
+    transition: var(--tr-f);
+    display:none;
+}
+.article_card:hover .header  {
+    /* When content/footer tend to wrap, fiddle with below 'flex-basis' < 40% */
+    flex-basis: 40%; /* makes it stretch to fill 40% */
+    font-size: 2rem;
+    text-align: center;
+}
+
+.article_card .bg-pic {
+    transition: var(--tr-s);
+}
+.article_card:hover .bg-pic  {
+    opacity: 0.5;
+}
+
+.article_card .content {
+    /* hides fading text under pricing */
+    overflow: hidden; /* disable to test */
+
+    height : 0px;
+    opacity: 0;
+    
+    transition: var(--tr-s);
+}
+.article_card:hover .content {
+    height : auto;
+    opacity: 1;
+}
+
+/*************/
+/* Eye-candy */
+/*************/
+
+body { font-size: 1rem }
+
+ul, li { padding: 0; list-style-type: none }
+
+.article_card > * {
+     /* obfuscate picture for testing */
+    background-color: hsl(0,0%,0%,.2);/* remove me */
+    color:  hsl(0,0%,100%,1);
+
+    cursor: pointer;
+}
+
+.title { font-size: 1.4rem }
+.prix  { font-size: 3.0rem; font-weight: 800; }
+.unit  { font-size: 1.6rem }
+
+/* BONUS: card hover/click animation */
+.article_card {
+    /* GMD elevation 1dp */
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,.20),
+                0px 1px 1px  0px rgba(0,0,0,.14),
+                0px 1px 3px  0px rgba(0,0,0,.12);
+}
+.article_card:hover {
+    /* transform: scale(1.01); */
+    /* GMD elevation 3dp */
+    box-shadow: 0px 3px 3px -2px rgba(0,0,0,.20),
+                0px 3px 4px  0px rgba(0,0,0,.14),
+                0px 1px 8px  0px rgba(0,0,0,.12);
+}
+.article_card:active:not(:focus), .article_card:focus {
+    transform: scale(1);
+}
+.recent h1, .find h1 {
+	letter-spacing: -2px;
+	margin-top: 20px;
+	font-weight: 800;

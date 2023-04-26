@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
+	;
+
+.body {
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.div0 {
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: min-content;
+}
+
+.div1, .div2, .div3 {
+	width: 630px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.input1 {
+	width: 100%;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+.chkId{
+	width: 120px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 20px;
+	margin: 0px;
+	margin-bottom: 5px;
+	margin-left:10px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+.input2 {
+	width: 200px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+
+.input4 {
+	width: 200px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+
+.input5 {
+	width: 620px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+.input6 {
+	width: 480px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	display: inline-block;
+	font-size:10pt;
+}
+.chkNick{
+	width: 120px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 20px;
+	margin: 0px;
+	margin-bottom: 0px;
+	margin-left:10px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+	font-weight: 300;
+	cursor: pointer;
+	display: inline-block;
+}
+.sel1 {
+	width: 622px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+
+.mobile {
+	width: 100px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+
+.emailDomain {
+	width: 195px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+}
+
+.p1 {
+	font-weight: 300;
+	font-size: 11pt;
+	margin-bottom: 2px;
+	margin-top:20px;
+}
+
+.p2 {
+	margin-top: 2px;
+	font-size: 11pt;
+	color: red;
+	padding-left: 2px;
+	display: none;
+}
+
+.p3 {
+	font-weight: 300;
+	font-size: 10pt;
+	margin-bottom: -55px;
+}
+
+.btn_add1 {
+	width: 110px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 20px;
+	margin: 0px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.btn_add2 {
+	width: 622px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+	font-weight: 400;
+	cursor: pointer;
+	transform: translateY(2px);
+}
+
+#wr_submit {
+	width: 622px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 20px;
+	margin: 0px;
+	margin-top: 10px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+	font-weight: 400;
+	cursor: pointer;
+	background-color: white;
+}
+
+#wr_submit:hover {
+	background-color: #eeeeee;
+}
+
+#wr_submit:active {
+	transform: translateY(2px);
+}
+
+.multi_radio2 {
+	border-top: 1px solid #eeeeee;
+	margin-top: 10px;
+}
+
+/*중복확인 버튼*/
+.wrapper {
+	display: grid;
+	/*grid-template-columns: 79% 21%;*/
+	height: fit-content;
+}
+
+.text {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.btn_chkId {
+	grid-column: 2;
+}

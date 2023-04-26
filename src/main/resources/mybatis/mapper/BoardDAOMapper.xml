@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.project.board.BoardDAO">
+    <!--게시글 전체 조회 목록-->
+    <select id="select_ALL" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select b.num, m.nick, b.*
+        from member m join board b
+        on m.userid=b.userid
+        order by b.num desc;
+    </select>
+
+    <!--게시글 카테고리로 조회-->
+    <select id="select_Category" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select m.nick, b.*
+        from member m join board b
+        on m.userid=b.userid
+        where category=#{category}
+        order by num desc;
+    </select>
+
+    <!--게시글 등록-->
+    <insert id="insert_Board" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="num">
+        insert into board(userid, subject, content, regTM, category)
+        values(#{userid}, #{subject}, #{content}, now(), #{category});
+    </insert>
+
+    <!--글 번호로 조회-->
+    <select id="selectByBoardNum" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select m.nick, b.*
+        from member m join board b
+        on m.userid=b.userid
+        where b.num=#{num}
+        order by num desc;
+    </select>
+</mapper>
