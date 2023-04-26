@@ -15,4 +15,6 @@ public interface BoardDAO {
     public Map<String, Object> selectByBoardNum(Map<String, Object> map);
     // 글 쓰기
     public int insert_Board(Map<String, Object> map);
+    //글 수정
+    public int update_Board(Map<String, Object> map);
 }

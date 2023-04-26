@@ -95,5 +95,5 @@ on m.userid=b.userid
 order by b.num desc;
 
 update board 
-set	regTM=now()
-where num=27;
+set	category=2, subject="제목수정", content="내용수정"
+where num=1 and userid='lee';

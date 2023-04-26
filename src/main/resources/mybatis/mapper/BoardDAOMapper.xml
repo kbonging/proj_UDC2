@@ -36,4 +36,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where b.num=#{num}
         order by num desc;
     </select>
+
+    <!-- 글 번호, 아이디 가져와서 수정 -->
+    <update id="update_Board" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="num">
+        update board
+        set	category=#{category}, subject=#{subject}, content=#{content}
+        where num=#{num} and userid=#{userid};
+    </update>
 </mapper>

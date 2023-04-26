@@ -64,6 +64,7 @@
 			<div class=div3>
 				<input type="button" value="수정" id="modifyBtn" class="sub1">
 			</div>
+				<input type="hidden" class="input1" id="num" name="num" value="${boardMap.num}">
 		</form>
 	</div>
 </div>

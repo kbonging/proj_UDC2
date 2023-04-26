@@ -177,7 +177,7 @@ public class BoardController {
 
     // 글 수정 페이지 보여주기 시작 //
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
-    public String modify(@RequestParam Map<String, Object> map, Model model){
+    public String modify_GET(@RequestParam Map<String, Object> map, Model model){
 
         System.out.println("/modify - map : "+map.toString());
         Map<String, Object> boardMap = boardService.selectByBoardNum(map);
@@ -188,5 +188,19 @@ public class BoardController {
     }
     // 글 수정 페이지 보여주기 끝 //
 
+    @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    public String modify_POST(@RequestParam Map<String, Object> map, Model model, HttpSession session){
+        System.out.println("/modify_POST - map : "+map.toString());
+
+        String userid = session.getAttribute("userid").toString();
+        map.put("userid", userid);
+
+        int cnt = boardService.update_Board(map);
+        System.out.println("글 수정 처리 : "+cnt);
+
+
+
+        return "/";
+    }
 
 } // BoardController 끝

@@ -57,6 +57,29 @@ $(function(){
 
     });
 
+    /*수정 페이지 에서 수정처리버튼 시작 /bbs/boardModify.jsp*/
+    $('#modifyBtn').click(function(){
+        let category = $('#category').val();
+        let subject = $('#subject').val();
+        let content = $('#content').val();
+
+        //alert(category);
+
+        if(category == 0){
+            alert('카테고리를 선택하세요');
+            $('#category').focus();
+        }else if(subject=="" || subject==null){
+            alert('제목을 입력하세요');
+            $('#subject').focus();
+        }else if(content=="" || content==null){
+             alert('내용을 작성하세요');
+             $('#content').focus();
+        }else{
+            $('#modifyFrm').attr("action", "/modify");
+            $('#modifyFrm').submit();
+        }
+    });
+
 
 }); //////   $(function(){ 끝////////////
 

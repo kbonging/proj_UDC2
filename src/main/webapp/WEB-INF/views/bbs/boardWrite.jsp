@@ -12,8 +12,13 @@
 <script type="text/javascript">
 $(function(){
 let sessionUserid = $('#sessionUserid').val();
+    //alert(sessionUserid);
 
-    loginChFn(sessionUserid);
+    setInterval(function(){
+        loginChFn(sessionUserid)
+    },1);
+
+
 
 });
 </script>

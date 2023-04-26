@@ -30,4 +30,9 @@ public class BoardServiceImp implements BoardService{
     public int insert_Board(Map<String, Object> map) {
         return this.boardDAO.insert_Board(map);
     }
+
+    @Override
+    public int update_Board(Map<String, Object> map) {
+        return this.boardDAO.update_Board(map);
+    }
 }
