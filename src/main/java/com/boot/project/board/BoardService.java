@@ -10,4 +10,5 @@ public interface BoardService {
     public Map<String, Object> selectByBoardNum(Map<String, Object> map);
     public int insert_Board(Map<String, Object> map);
     public int update_Board(Map<String, Object> map);
+    public int delete_Board(Map<String, Object> map);
 }

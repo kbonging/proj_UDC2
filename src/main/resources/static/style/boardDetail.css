@@ -18,7 +18,7 @@ body *:not(h3){
 	width: 800px;
 }
 .div2:not(p){
-	min-height: 300px;
+	min-height: 500px;
 }
 .div_comm{
 	margin-bottom:30px;

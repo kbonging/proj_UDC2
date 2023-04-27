@@ -16,7 +16,7 @@ let sessionUserid = $('#sessionUserid').val();
 
     setInterval(function(){
         loginChFn(sessionUserid)
-    },1);
+    },1000);
 
 
 
@@ -60,7 +60,7 @@ let sessionUserid = $('#sessionUserid').val();
 			<div class="div1">
 				<textarea class="input2" id="content" name="content" rows="10" cols="30"></textarea>
 				<p class="p2"></p>
-				<input type="file" class="input3" name="img" id="img">
+				<input type="file" class="input3" name="file" id="file">
 			</div>
 			<div class=div3>
 				<input type="button" value="등록" id="regBtn" class="sub1">

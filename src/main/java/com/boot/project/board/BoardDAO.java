@@ -17,4 +17,6 @@ public interface BoardDAO {
     public int insert_Board(Map<String, Object> map);
     //글 수정
     public int update_Board(Map<String, Object> map);
+    //글 삭제
+    public int delete_Board(Map<String, Object> map);
 }

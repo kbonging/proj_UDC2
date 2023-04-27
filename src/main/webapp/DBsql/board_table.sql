@@ -89,11 +89,11 @@ where num='1';
 
 alter table board add category char(30) not null;
 
-select b.num, m.nick, b.*
+select b.*, m.nick
 from member m join board b
 on m.userid=b.userid
 order by b.num desc;
 
 update board 
-set	category=2, subject="제목수정", content="내용수정"
-where num=1 and userid='lee';
+set	delCheck='Y'
+where num=1;

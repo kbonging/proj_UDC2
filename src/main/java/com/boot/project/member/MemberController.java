@@ -104,7 +104,7 @@ public class MemberController {
 			Map<String, Object> userMap = memberService.memberLogin(map);
 			session.setAttribute("userid", userMap.get("userid"));
 
-			return "redirect:/";
+			return "redirect:/boardList?category=All";
 		}
 
 		model.addAttribute("url",url);

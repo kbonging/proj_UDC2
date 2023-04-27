@@ -41,6 +41,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="update_Board" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="num">
         update board
         set	category=#{category}, subject=#{subject}, content=#{content}
-        where num=#{num} and userid=#{userid};
+        where num=#{num};
+    </update>
+
+    <!-- 글 번호로 삭제 -->
+    <update id="delete_Board" parameterType="java.util.HashMap">
+        update board
+        set	delCheck='Y'
+        where num=#{num};
     </update>
 </mapper>

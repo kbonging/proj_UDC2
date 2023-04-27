@@ -32,7 +32,7 @@ public class BoardController {
     // 리스트 목록 보여주기
     @RequestMapping(value = "/boardList")
     public String boardList(@RequestParam Map<String, Object> map, Model model){
-        System.out.println("/boardList - map : "+map.toString());
+        //System.out.println("/boardList - map : "+map.toString());
         List<Map<String, Object>> list = null;
 
         //카테고리 받아서 숫자로 변환
@@ -81,11 +81,11 @@ public class BoardController {
         for (int i = 0; i < list.size(); i++) {
             Map<String, Object> boardMap = list.get(i);
             String regTM = boardMap.get("regTM").toString();
-            System.out.println("/boardList - DB에서 가져온 regTM : "+regTM);
+            //System.out.println("/boardList - DB에서 가져온 regTM : "+regTM);
 
 
             regTM = regTM.substring(0,10)+" "+regTM.substring(11);
-            System.out.println("substring 후 regTM : "+regTM);
+            //System.out.println("substring 후 regTM : "+regTM);
 
             try {
                 Date day = sdf.parse(regTM);
@@ -122,7 +122,7 @@ public class BoardController {
     @RequestMapping(value = "/boardWrite")
     public String boardWrite_post(@RequestParam Map<String, Object> map, HttpSession session, Model model){
         //디버깅
-        System.out.println("/boardWrite post - "+map.toString());
+        //System.out.println("/boardWrite post - "+map.toString());
         // 로그인한 아이디 가져오기
         String userid = session.getAttribute("userid").toString();
 
@@ -188,6 +188,7 @@ public class BoardController {
     }
     // 글 수정 페이지 보여주기 끝 //
 
+    // 글 수정 처리 시작 //
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
     public String modify_POST(@RequestParam Map<String, Object> map, Model model, HttpSession session){
         System.out.println("/modify_POST - map : "+map.toString());
@@ -198,9 +199,28 @@ public class BoardController {
         int cnt = boardService.update_Board(map);
         System.out.println("글 수정 처리 : "+cnt);
 
+        String url="/modify?num="+map.get("num").toString(), msg="글수정 중 문제가 발생했습니다. 다시 시도해주세요.\\\\n만일 문제가 계속될 경우 고객센터(02-1234-5678)로 연락해주세요.";
 
+        if(cnt > 0){
+            url="/boardDetail?num="+map.get("num").toString();
+            msg="수정 처리 되었습니다.";
+        }
 
-        return "/";
+        model.addAttribute("url",url);
+        model.addAttribute("msg",msg);
+        return "common/message";
+    }
+    // 글 수정 처리 끝 //
+
+    // 글 삭제 처리//
+    @RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
+    public String boardDelete(@RequestParam Map<String, Object> map){
+        System.out.println("/boardDelete map : "+map.toString());
+        int cnt = boardService.delete_Board(map);
+        System.out.println("삭제 처리 cnt:"+cnt);
+        System.out.println("map : "+map.toString());
+
+        return "redirect:/boardList?category=All";
     }
 
 } // BoardController 끝

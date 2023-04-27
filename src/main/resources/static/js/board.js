@@ -50,12 +50,34 @@ $(function(){
     /*  게시글 내용보기페이지에서 수정버튼 시작 /bbs/boardDetail.jsp  */
     $('#modBtn').click(function(){
         let num = $('#boardNum').val();
+        let sessionUserid = $('#sessionUserid').val();
 
-        let url = "/modify?";
-        url += "num="+num;
-        location.href=url;
-
+        if(sessionUserid == null || sessionUserid == ""){
+            alert("로그인이 만료되었습니다. 재로그인 후 이용해주세요.");
+            location.href="/memberLogin";
+        }else{
+            let url = "/modify?";
+            url += "num="+num;
+            location.href=url;
+        }
     });
+
+     /*  게시글 내용보기페이지에서 목록버튼 시작 /bbs/boardDetail.jsp  */
+     $('#boardListBtn').click(function(){
+        let url = "/boardList?category=All";
+        location.href=url;
+     });
+
+     /*  게시글 내용보기페이지에서 삭제버튼 시작 /bbs/boardDetail.jsp  */
+     $('#boardDeleteBtn').click(function(){
+        let num = $('#boardNum').val();
+        url = "/boardDelete?num="+num;
+
+        if(confirm('삭제 하시겠습니까?')){
+            location.href=url;
+        }
+     });
+
 
     /*수정 페이지 에서 수정처리버튼 시작 /bbs/boardModify.jsp*/
     $('#modifyBtn').click(function(){
@@ -78,6 +100,12 @@ $(function(){
             $('#modifyFrm').attr("action", "/modify");
             $('#modifyFrm').submit();
         }
+    });
+
+    $('.subject').hover(function(){
+        $(this).css("color","blue");
+    }, function(){
+        $(this).css("color","black");
     });
 
 

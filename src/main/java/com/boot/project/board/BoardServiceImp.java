@@ -35,4 +35,9 @@ public class BoardServiceImp implements BoardService{
     public int update_Board(Map<String, Object> map) {
         return this.boardDAO.update_Board(map);
     }
+
+    @Override
+    public int delete_Board(Map<String, Object> map) {
+        return this.boardDAO.delete_Board(map);
+    }
 }

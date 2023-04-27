@@ -48,10 +48,10 @@
 				<tr>
 					<th>
 						<div>
-							<input type="button" class="btns" value="목록">
+							<input type="button" class="btns" value="목록" id="boardListBtn">
 							<c:if test="${sessionScope.userid == boardMap.userid}">
                                 <input type="button" class="btns" value="수정" id="modBtn">
-                                <input type="button" class="btns" value="삭제">
+                                <input type="button" class="btns" value="삭제" id="boardDeleteBtn">
 							</c:if>
 						</div>
 					</th>
@@ -59,6 +59,7 @@
 			</table>
 		</div>
 		<input type="hidden" name="num" value="${boardMap.num}" id="boardNum">
+		<input type="hidden" name="sessionUserid" value="${sessionScope.userid}" id="sessionUserid">
 
 		<!-- 댓글 for문 돌릴 곳 (시작) -->
 		<div class="div_comm">

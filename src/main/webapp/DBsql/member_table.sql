@@ -37,3 +37,9 @@ select count(*) from member where userid = 'k';
 
 # 로그인
 select userid, userPwd from member where userid = 'lee' and userPwd = '1234';
+
+#####################
+
+update member
+set nick='조대한'
+where num=24;

@@ -94,7 +94,14 @@
 
                                             </c:otherwise>
 										</c:choose></td>
-										<td onclick="read(${map.num})">${map.subject }</td>
+										<c:choose>
+                                            <c:when test="${map.delCheck == 'Y'}">
+                                                <td style="color:red">삭제된 글 입니다.</td>
+                                            </c:when>
+                                            <c:otherwise>
+										        <td onclick="read(${map.num})" class="subject">${map.subject }</td>
+                                            </c:otherwise>
+                                        </c:choose>
 										<!--
 										<td><a href="/boardDetail?boardNo=${map.num}" style="text-decoration: none; color:black;">${map.subject }</a></td>
 										-->
