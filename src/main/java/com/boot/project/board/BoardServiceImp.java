@@ -40,4 +40,14 @@ public class BoardServiceImp implements BoardService{
     public int delete_Board(Map<String, Object> map) {
         return this.boardDAO.delete_Board(map);
     }
+
+    @Override
+    public int select_countAll(Map<String, Object> map) {
+        return this.boardDAO.select_countAll(map);
+    }
+
+    @Override
+    public int select_countCategory(Map<String, Object> map) {
+        return this.boardDAO.select_countCategory(map);
+    }
 }

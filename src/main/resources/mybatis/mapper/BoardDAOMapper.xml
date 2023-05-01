@@ -10,7 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select b.num, m.nick, b.*
         from member m join board b
         on m.userid=b.userid
-        order by b.num desc;
+        order by b.num desc
+        limit #{start},#{end};
     </select>
 
     <!--게시글 카테고리로 조회-->
@@ -19,7 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from member m join board b
         on m.userid=b.userid
         where category=#{category}
-        order by num desc;
+        order by num desc
+        limit #{start},#{end};
     </select>
 
     <!--게시글 등록-->
@@ -50,4 +52,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set	delCheck='Y'
         where num=#{num};
     </update>
+
+    <!-- 전체 개시글 개수 조회 -->
+    <select id="select_countAll" parameterType="java.util.HashMap" resultType="int">
+        select count(*) from board;
+    </select>
+
+    <!-- 카테고리 별 게시글 개수 조회 -->
+    <select id="select_countCategory" parameterType="java.util.HashMap" resultType="int">
+        select count(*) from board where category=#{category}
+    </select>
 </mapper>

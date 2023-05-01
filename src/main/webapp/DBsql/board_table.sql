@@ -97,3 +97,7 @@ order by b.num desc;
 update board 
 set	delCheck='Y'
 where num=1;
+
+select count(*) from board;
+
+ select * from board order by num desc limit  30,10;

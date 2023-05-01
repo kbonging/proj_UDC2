@@ -108,6 +108,11 @@ $(function(){
         $(this).css("color","black");
     });
 
+    ////////////////// 메뉴 버튼 클릭시 해당버튼 표시 ////////////////
+    $('.tablink').click(function(){
+        $(this).css("background-color", "gray");
+    });
+
 
 }); //////   $(function(){ 끝////////////
 
@@ -136,3 +141,16 @@ $(function(){
             location.href="/memberLogin";
         }
     }
+
+    // 페이지 번호 클릭시 실행할 함수
+    function pageProc(curPage){
+        let category = $('#category').val();
+
+        if(category=="Q&A"){
+            category="Q%26A";
+        }
+        let url = "boardList?category="+category;
+        url += "&nowPage="+curPage;
+        location.href=url;
+    }
+

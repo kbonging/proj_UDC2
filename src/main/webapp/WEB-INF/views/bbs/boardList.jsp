@@ -76,45 +76,68 @@
 
 									<!-- 반복구간(시작) -->
 
-                                    <c:forEach var="map" items="${list }">
+                                    <c:forEach var="listMap" items="${list }">
                                     
 									<tr>
 										<td>
+										    ${listMap.category}
+										</td>
 										<c:choose>
-										    <c:when test = "${map.category == 1}">
-                                            Q&A
-										    </c:when>
-										    <c:when test = "${map.category == 2}">
-                                            후기
-										    </c:when>
-										    <c:when test = "${map.category == 3}">
-                                            잡담
-                                            </c:when>
-                                            <c:otherwise>
-
-                                            </c:otherwise>
-										</c:choose></td>
-										<c:choose>
-                                            <c:when test="${map.delCheck == 'Y'}">
+                                            <c:when test="${listMap.delCheck == 'Y'}">
                                                 <td style="color:red">삭제된 글 입니다.</td>
                                             </c:when>
                                             <c:otherwise>
-										        <td onclick="read(${map.num})" class="subject">${map.subject }</td>
+										        <td onclick="read(${listMap.num})" class="subject">${listMap.subject }</td>
                                             </c:otherwise>
                                         </c:choose>
 										<!--
-										<td><a href="/boardDetail?boardNo=${map.num}" style="text-decoration: none; color:black;">${map.subject }</a></td>
+										<td><a href="/boardDetail?boardNo=${listMap.num}" style="text-decoration: none; color:black;">${listMap.subject }</a></td>
 										-->
-										<td>${map.nick}</td>
-										<td>${map.regTM }</td>
-										<td>${map.readCnt }</td>
-										<td>${map.goodCnt }</td>
+										<td>${listMap.nick}</td>
+										<td>${listMap.regTM }</td>
+										<td>${listMap.readCnt }</td>
+										<td>${listMap.goodCnt }</td>
 									</tr>
 
                                     </c:forEach>
 									<!-- 반복구간(끝) -->
 								</tbody>
 							</table>
+
+							<div class="divPage">
+							    <!-- 이전블럭으로 이동 -->
+							    <c:if test="${paginationInfo.firstPage>1 }">
+                                		<%-- <a href='<c:url value="/board/list.do?currentPage=${pagingInfo.firstPage-1}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}"/>'> --%>
+                                		<a href="#" onclick="pageProc(${paginationInfo.firstPage-1})" class="pageA">
+                                			이전
+                                		</a>
+                                </c:if>
+
+                                <!-- 페이지 번호 추가 -->
+                                	<!-- [1][2][3][4][5][6][7][8][9][10] -->
+                                	<c:forEach var="i" begin="${paginationInfo.firstPage }" end="${paginationInfo.lastPage }">
+                                		<c:if test="${i==paginationInfo.currentPage }">
+                                			<span style="color: blue;font-weight: bold;font-size: 20px">
+                                				&nbsp;${i }&nbsp;</span>
+                                		</c:if>
+                                		<c:if test="${i!=paginationInfo.currentPage }">
+                                				<%-- <a href='<c:url value="/board/list.do?currentPage=${i}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}"/>'> --%>
+                                			<a href="#" onclick="pageProc(${i})" class="pageA">
+                                				&nbsp;${i}&nbsp;
+                                			</a>
+                                		</c:if>
+                                	</c:forEach>
+                                	<!--  페이지 번호 끝 -->
+
+                                	<!-- 다음 블럭으로 이동 -->
+                                    	<c:if test="${paginationInfo.lastPage < paginationInfo.totalPage }">
+                                    		<%-- <a href='<c:url value="/board/list.do?currentPage=${pagingInfo.lastPage+1}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}"/>'> --%>
+                                    		<a href="#" onclick="pageProc(${paginationInfo.lastPage+1})" class="pageA">
+                                    			다음
+                                    		</a>
+                                    </c:if>
+							</div> <!-- .divPage 끝 -->
+
 							<div class="btn_write" style="display: block;">
 								<input type="button" class="sub2" value="글쓰기" id="boardWriteBtn">
 							</div>
@@ -129,6 +152,7 @@
 										<input type="text" name="search_keyword" class="keyw" value="" >
 										<input type="submit" class="sub1" value="검색">
 									</div>
+									<input type="text" id="category" name="category" class="category" value="${map.category}" >
 								</form>
 							</div>
 						</div>

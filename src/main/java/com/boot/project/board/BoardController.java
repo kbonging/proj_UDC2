@@ -1,5 +1,7 @@
 package com.boot.project.board;
 
+import com.boot.project.common.ConstUtill;
+import com.boot.project.common.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Controller;
@@ -32,8 +34,28 @@ public class BoardController {
     // 리스트 목록 보여주기
     @RequestMapping(value = "/boardList")
     public String boardList(@RequestParam Map<String, Object> map, Model model){
-        //System.out.println("/boardList - map : "+map.toString());
+        System.out.println("/boardList - map : "+map.toString());
         List<Map<String, Object>> list = null;
+
+        int nowPage = 1;
+
+        if(map.get("nowPage")!=null){
+            nowPage = Integer.parseInt(map.get("nowPage").toString());
+            System.out.println("나우페이지가 있을떄 여기걸쳐");
+        }
+
+        int currentPage = nowPage;
+        //[1] PaginationInfo 생성
+        PaginationInfo paginationInfo = new PaginationInfo();
+        paginationInfo.setBlockSize(ConstUtill.BLOCKSIZE);
+        paginationInfo.setRecordCountPerPage(ConstUtill.RECORD_COUNT);
+        paginationInfo.setCurrentPage(currentPage);
+        int start = 0;
+        int end = paginationInfo.getRecordCountPerPage();
+
+        start = paginationInfo.getFirstRecordIndex();
+        map.put("start", start);
+        map.put("end", end);
 
         //카테고리 받아서 숫자로 변환
         int category = 0;
@@ -51,11 +73,33 @@ public class BoardController {
 
         map.put("category", category);
 
+
+
         if (category > 0) { //카테고리별 조회
             list = boardService.select_Category(map);
-        }else{ // 카테고리없는거 조회
+            paginationInfo.setTotalRecord(boardService.select_countCategory(map));
+        }else{ // 카테고리 = All
+            //전체 게시물 가져오기
             list = boardService.select_ALL(map);
+            // 총 게시물 수
+            paginationInfo.setTotalRecord(boardService.select_countAll(map));
         }
+        
+        // 페이징 디버깅 시작
+        System.out.println("*****************************");
+        System.out.println("getTotalPage :"+paginationInfo.getTotalPage());
+        System.out.println("getCurrentPage :"+paginationInfo.getCurrentPage());
+        System.out.println("getBlockSize : "+paginationInfo.getBlockSize());
+        System.out.println("getTotalRecord :"+paginationInfo.getTotalRecord());
+        System.out.println("getRecordCountPerPage :"+paginationInfo.getRecordCountPerPage());
+        System.out.println("getFirstPage :"+paginationInfo.getFirstPage());
+        System.out.println("getLastPage :"+paginationInfo.getLastPage());
+        System.out.println("getFirstRecordIndex :"+paginationInfo.getFirstRecordIndex());
+        System.out.println("getLastRecordIndex :"+paginationInfo.getLastRecordIndex());
+        System.out.println("*****************************");
+        // 페이징 디버깅 끝
+
+
         // 카테고리가 없거나 ALL일 경우
 //        if (map.get("category") == null
 //                || map.get("category").toString().equals("") || map.get("category").toString().equals("All")){
@@ -102,12 +146,39 @@ public class BoardController {
         ///////////////////////////////////////////////////////////////////
         ////////////////////////   날짜 관련  끝    /////////////////////////
         ///////////////////////////////////////////////////////////////////
+
+        //카테고리 숫자 > 변경 예) 1 > Q&A
+        for (int i = 0; i < list.size(); i++) {
+            Map<String, Object> boardMap = list.get(i);
+            String strCategory = boardMap.get("category").toString();
+            if (strCategory.equals("1")) {
+                strCategory = "Q&A";
+            }else if(strCategory.equals("2")){
+                strCategory = "후기";
+            }else if(strCategory.equals("3")){
+                strCategory = "잡담";
+            }
+            boardMap.put("category", strCategory);
+        }
       /*  확인용
         for (Map<String, Object> map2 : list) {
             System.out.println(map2);
         }*/
-        System.out.println("list 목록 :"+list.toString());
+        //System.out.println("list 목록 :"+list.toString());
+
+        if(category==0){
+            map.put("category", "All");
+        }else if (category==1) {
+            map.put("category", "Q&A");
+        }else if(category==2){
+            map.put("category", "Review");
+        }else if(category==3){
+            map.put("category", "Chat");
+        }
+
+        model.addAttribute("paginationInfo", paginationInfo);
         model.addAttribute("list", list);
+        model.addAttribute("map", map);
 
         return "bbs/boardList";
     }
@@ -146,7 +217,7 @@ public class BoardController {
     // 글 상세페이지 보여주기
     @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
     public String boardDetail_GET(@RequestParam Map<String, Object> map, Model model){
-        System.out.println("boardDetail_GET - map.toString() : "+map.toString());
+        //System.out.println("boardDetail_GET - map.toString() : "+map.toString());
         String category = "";
         Map<String, Object> boardMap = boardService.selectByBoardNum(map);
 
@@ -157,6 +228,7 @@ public class BoardController {
             regTM = regTM.substring(0,10)+" "+ regTM.substring(11,16);
 //            System.out.println("가공후 regTM : "+regTM);
             boardMap.put("regTM", regTM);
+
 
             if ((int)boardMap.get("category") == 1) {
                 category = "Q&A";
@@ -170,7 +242,7 @@ public class BoardController {
 
         }
 
-        System.out.println(boardMap.toString());
+        //System.out.println(boardMap.toString());
         model.addAttribute("boardMap",boardMap);
         return "bbs/boardDetail";
     }
@@ -179,9 +251,9 @@ public class BoardController {
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
     public String modify_GET(@RequestParam Map<String, Object> map, Model model){
 
-        System.out.println("/modify - map : "+map.toString());
+        //System.out.println("/modify - map : "+map.toString());
         Map<String, Object> boardMap = boardService.selectByBoardNum(map);
-        System.out.println("/modify - boardMap : "+boardMap.toString());
+        //System.out.println("/modify - boardMap : "+boardMap.toString());
 
         model.addAttribute("boardMap", boardMap);
         return "bbs/boardModify";
@@ -191,13 +263,13 @@ public class BoardController {
     // 글 수정 처리 시작 //
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
     public String modify_POST(@RequestParam Map<String, Object> map, Model model, HttpSession session){
-        System.out.println("/modify_POST - map : "+map.toString());
+        //System.out.println("/modify_POST - map : "+map.toString());
 
         String userid = session.getAttribute("userid").toString();
         map.put("userid", userid);
 
         int cnt = boardService.update_Board(map);
-        System.out.println("글 수정 처리 : "+cnt);
+        //System.out.println("글 수정 처리 : "+cnt);
 
         String url="/modify?num="+map.get("num").toString(), msg="글수정 중 문제가 발생했습니다. 다시 시도해주세요.\\\\n만일 문제가 계속될 경우 고객센터(02-1234-5678)로 연락해주세요.";
 
@@ -215,10 +287,10 @@ public class BoardController {
     // 글 삭제 처리//
     @RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
     public String boardDelete(@RequestParam Map<String, Object> map){
-        System.out.println("/boardDelete map : "+map.toString());
+        //System.out.println("/boardDelete map : "+map.toString());
         int cnt = boardService.delete_Board(map);
-        System.out.println("삭제 처리 cnt:"+cnt);
-        System.out.println("map : "+map.toString());
+        //System.out.println("삭제 처리 cnt:"+cnt);
+        //System.out.println("map : "+map.toString());
 
         return "redirect:/boardList?category=All";
     }

@@ -155,5 +155,19 @@ tbody tr:nth-child(3) td{
 	background-color: #eeeeee;
 }
 
+.divPage {
+    margin: auto;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.pageA{
+    color:gray;
+    font-size:20px;
+}
+
 
 

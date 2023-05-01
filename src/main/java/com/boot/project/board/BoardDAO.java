@@ -19,4 +19,8 @@ public interface BoardDAO {
     public int update_Board(Map<String, Object> map);
     //글 삭제
     public int delete_Board(Map<String, Object> map);
+    //전체 개시글 개수 조회
+    public int select_countAll(Map<String, Object> map);
+    // 카테고리별 게시글 개수 조회
+    public int select_countCategory(Map<String, Object> map);
 }
