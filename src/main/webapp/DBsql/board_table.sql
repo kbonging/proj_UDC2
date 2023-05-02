@@ -92,6 +92,18 @@ alter table board add category char(30) not null;
 select b.*, m.nick
 from member m join board b
 on m.userid=b.userid
+order by b.num desc
+limit 0,10;
+
+select b.*, m.nick
+from member m join board b
+on m.userid=b.userid
+order by b.num desc;
+
+select b.*, m.nick
+from member m join board b
+on m.userid=b.userid
+where subject like '%m%'
 order by b.num desc;
 
 update board 
@@ -101,3 +113,15 @@ where num=1;
 select count(*) from board;
 
  select * from board order by num desc limit  30,10;
+ 
+ select count(*) from board where category=1;
+select count(*) from 
+board
+where subject like '%test%';
+
+select m.nick, b.*
+        from member m join board b
+        on m.userid=b.userid
+        where category=1 and  subject like CONCAT('%','${search_keyword}','%')
+        order by num desc
+        limit 0,10;

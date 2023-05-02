@@ -22,6 +22,7 @@
 				<button class="tablink"  onclick="openPage('Q%26A')" >Q&A</button>
 				<button class="tablink"  onclick="openPage('Review')">후기</button>
 				<button class="tablink"  onclick="openPage('Chat')">잡담</button>
+				<span class="totalRecord">게시물 수 : ${paginationInfo.totalRecord}</span>
 			</div>
 			<div class="grid-item3">
 
@@ -74,10 +75,19 @@
                                         <td>423</td>
                                     </tr>
 
-									<!-- 반복구간(시작) -->
 
+                                    <c:if test="${paginationInfo.totalRecord == 0}">
+                                        <tr>
+                                        <td></td>
+                                        <td>검색된 게시물이 없습니다.</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        </tr>
+                                    </c:if>
+									<!-- 반복구간(시작) -->
                                     <c:forEach var="listMap" items="${list }">
-                                    
 									<tr>
 										<td>
 										    ${listMap.category}
@@ -142,17 +152,24 @@
 								<input type="button" class="sub2" value="글쓰기" id="boardWriteBtn">
 							</div>
 							<div class="addons" style="display: block;">
-								<form name="frm" action="" method="get">
+								<form name="searchFrm" method="get" id="searchFrm">
+									<input type="hidden" id="category" name="category" class="category" value="${map.category}" >
 									<div class="addons2" style="display: block;">
 										<select name="search_target" class="sel1">
-											<option value="title_content">전체</option>
-											<option value="title">제목</option>
-											<option value="content">내용</option>
+											<option value="subject"
+                                                <c:if test="${map.search_target == 'subject' }">
+                                                selected="selected"
+                                            </c:if>>제목
+											</option>
+											<option value="content"
+                                                <c:if test="${map.search_target == 'content' }">
+                                                selected="selected"
+                                            </c:if>>내용
+                                            </option>
 										</select>
-										<input type="text" name="search_keyword" class="keyw" value="" >
-										<input type="submit" class="sub1" value="검색">
+										<input type="text" name="search_keyword" class="keyw" value="${map.search_keyword}" id="search_keyword">
+										<input type="button" class="sub1" value="검색" id="searchBtn">
 									</div>
-									<input type="text" id="category" name="category" class="category" value="${map.category}" >
 								</form>
 							</div>
 						</div>

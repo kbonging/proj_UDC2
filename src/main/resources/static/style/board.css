@@ -22,6 +22,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 1000px;
+	position: relative;
 }
 .tab button {
 	background-color: inherit;
@@ -169,5 +170,9 @@ a{
     font-size:20px;
 }
 
-
+span.totalRecord {
+    padding-left: 530px;
+    margin-top: 14px;
+    position: absolute;
+}
 

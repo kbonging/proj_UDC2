@@ -102,6 +102,7 @@ $(function(){
         }
     });
 
+    // 글 제목 마우스 갖다대면 색 변경
     $('.subject').hover(function(){
         $(this).css("color","blue");
     }, function(){
@@ -111,6 +112,20 @@ $(function(){
     ////////////////// 메뉴 버튼 클릭시 해당버튼 표시 ////////////////
     $('.tablink').click(function(){
         $(this).css("background-color", "gray");
+    });
+
+
+    /////////// 검색 처리 /bbs/boardList.jsp ////////
+    $('#searchBtn').click(function(){
+        let search_keyword = $('#search_keyword').val().trim();
+
+        if(search_keyword=="" || search_keyword==null){
+            alert('검색할 키워드를 입력하세요.');
+            $('#search_keyword').focus();
+        }else{
+            $('#searchFrm').attr("action", "/boardList");
+            $('#searchFrm').submit();
+        }
     });
 
 

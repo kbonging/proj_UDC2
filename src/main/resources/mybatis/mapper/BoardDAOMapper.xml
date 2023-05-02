@@ -5,13 +5,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.boot.project.board.BoardDAO">
-    <!--게시글 전체 조회 목록-->
+
+    <!-- 검색키워드가 있을경우 -->
+    <sql id="searchWhere">
+        <if test="search_keyword != null">
+            where ${search_target} like CONCAT('%','${search_keyword}','%')
+        </if>
+    </sql>
+    <!-- 검색키워드 와 카테고리가 있을경우 -->
+    <sql id="searchWhere_Category">
+        <if test="search_keyword != null">
+            and ${search_target} like CONCAT('%','${search_keyword}','%')
+        </if>
+    </sql>
+
+    <!-- //////////////////////////////////////// -->
+
+    <!--전체 게시글 조회 목록-->
     <select id="select_ALL" parameterType="java.util.HashMap" resultType="java.util.HashMap">
         select b.num, m.nick, b.*
         from member m join board b
         on m.userid=b.userid
+        <include refid="searchWhere"></include>
         order by b.num desc
         limit #{start},#{end};
+    </select>
+
+    <!-- 전체 게시글 개수 조회 -->
+    <select id="select_countAll" parameterType="java.util.HashMap" resultType="int">
+        select count(*) from board
+        <include refid="searchWhere"></include>;
     </select>
 
     <!--게시글 카테고리로 조회-->
@@ -20,8 +43,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from member m join board b
         on m.userid=b.userid
         where category=#{category}
+        <include refid="searchWhere_Category"></include>
         order by num desc
         limit #{start},#{end};
+    </select>
+
+    <!-- 카테고리 별 게시글 개수 조회 -->
+    <select id="select_countCategory" parameterType="java.util.HashMap" resultType="int">
+        select count(*) from board where category=#{category} <include refid="searchWhere_Category"></include>
     </select>
 
     <!--게시글 등록-->
@@ -53,13 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where num=#{num};
     </update>
 
-    <!-- 전체 개시글 개수 조회 -->
-    <select id="select_countAll" parameterType="java.util.HashMap" resultType="int">
-        select count(*) from board;
-    </select>
 
-    <!-- 카테고리 별 게시글 개수 조회 -->
-    <select id="select_countCategory" parameterType="java.util.HashMap" resultType="int">
-        select count(*) from board where category=#{category}
-    </select>
+
+
 </mapper>

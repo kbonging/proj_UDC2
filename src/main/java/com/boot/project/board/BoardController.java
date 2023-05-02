@@ -75,11 +75,14 @@ public class BoardController {
 
 
 
+
         if (category > 0) { //카테고리별 조회
             list = boardService.select_Category(map);
             paginationInfo.setTotalRecord(boardService.select_countCategory(map));
         }else{ // 카테고리 = All
             //전체 게시물 가져오기
+
+            System.out.println("게시물 가져오기할떄 파라미터 : "+map.toString());
             list = boardService.select_ALL(map);
             // 총 게시물 수
             paginationInfo.setTotalRecord(boardService.select_countAll(map));
@@ -178,6 +181,7 @@ public class BoardController {
 
         model.addAttribute("paginationInfo", paginationInfo);
         model.addAttribute("list", list);
+        System.out.println("model.addAttribute 될 map : "+map.toString());
         model.addAttribute("map", map);
 
         return "bbs/boardList";
