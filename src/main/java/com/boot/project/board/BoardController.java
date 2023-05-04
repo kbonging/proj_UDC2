@@ -41,7 +41,7 @@ public class BoardController {
 
         if(map.get("nowPage")!=null){
             nowPage = Integer.parseInt(map.get("nowPage").toString());
-            System.out.println("나우페이지가 있을떄 여기걸쳐");
+            //System.out.println("나우페이지가 있을떄 여기걸쳐");
         }
 
         int currentPage = nowPage;
@@ -82,24 +82,24 @@ public class BoardController {
         }else{ // 카테고리 = All
             //전체 게시물 가져오기
 
-            System.out.println("게시물 가져오기할떄 파라미터 : "+map.toString());
+            //System.out.println("게시물 가져오기할떄 파라미터 : "+map.toString());
             list = boardService.select_ALL(map);
             // 총 게시물 수
             paginationInfo.setTotalRecord(boardService.select_countAll(map));
         }
         
         // 페이징 디버깅 시작
-        System.out.println("*****************************");
-        System.out.println("getTotalPage :"+paginationInfo.getTotalPage());
-        System.out.println("getCurrentPage :"+paginationInfo.getCurrentPage());
-        System.out.println("getBlockSize : "+paginationInfo.getBlockSize());
-        System.out.println("getTotalRecord :"+paginationInfo.getTotalRecord());
-        System.out.println("getRecordCountPerPage :"+paginationInfo.getRecordCountPerPage());
-        System.out.println("getFirstPage :"+paginationInfo.getFirstPage());
-        System.out.println("getLastPage :"+paginationInfo.getLastPage());
-        System.out.println("getFirstRecordIndex :"+paginationInfo.getFirstRecordIndex());
-        System.out.println("getLastRecordIndex :"+paginationInfo.getLastRecordIndex());
-        System.out.println("*****************************");
+//        System.out.println("*****************************");
+//        System.out.println("getTotalPage :"+paginationInfo.getTotalPage());
+//        System.out.println("getCurrentPage :"+paginationInfo.getCurrentPage());
+//        System.out.println("getBlockSize : "+paginationInfo.getBlockSize());
+//        System.out.println("getTotalRecord :"+paginationInfo.getTotalRecord());
+//        System.out.println("getRecordCountPerPage :"+paginationInfo.getRecordCountPerPage());
+//        System.out.println("getFirstPage :"+paginationInfo.getFirstPage());
+//        System.out.println("getLastPage :"+paginationInfo.getLastPage());
+//        System.out.println("getFirstRecordIndex :"+paginationInfo.getFirstRecordIndex());
+//        System.out.println("getLastRecordIndex :"+paginationInfo.getLastRecordIndex());
+//        System.out.println("*****************************");
         // 페이징 디버깅 끝
 
 
@@ -181,7 +181,7 @@ public class BoardController {
 
         model.addAttribute("paginationInfo", paginationInfo);
         model.addAttribute("list", list);
-        System.out.println("model.addAttribute 될 map : "+map.toString());
+        //System.out.println("model.addAttribute 될 map : "+map.toString());
         model.addAttribute("map", map);
 
         return "bbs/boardList";
@@ -197,7 +197,7 @@ public class BoardController {
     @RequestMapping(value = "/boardWrite")
     public String boardWrite_post(@RequestParam Map<String, Object> map, HttpSession session, Model model){
         //디버깅
-        //System.out.println("/boardWrite post - "+map.toString());
+        System.out.println("/boardWrite post (글쓰기 처리)- "+map.toString());
         // 로그인한 아이디 가져오기
         String userid = session.getAttribute("userid").toString();
 
