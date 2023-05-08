@@ -21,3 +21,5 @@ insert into comments(content, regTM, groupNo, step, sortNo, boardNo, userid)
 values('첫 댓글~', now(), 1, 0, 0, 5, 'lee');
 
 select * from comments;
+
+select max(commentNo) from comments;
