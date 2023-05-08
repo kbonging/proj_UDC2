@@ -60,6 +60,12 @@ update member
 set nick = '봉잉'
 where num=22;
 
+########## 00 초에 들록되면 페이지 오류남 #############
+update board
+set regTM=now()
+where num=61;
+#############################
+
 select * from member;
 select m.nick, b.*
 from member m join board b
@@ -112,7 +118,7 @@ where num=1;
 
 select count(*) from board;
 
- select * from board order by num desc limit  30,10;
+ select * from board order by num desc limit  0,10;
  
  select count(*) from board where category=1;
 select count(*) from 
@@ -125,3 +131,6 @@ select m.nick, b.*
         where category=1 and  subject like CONCAT('%','${search_keyword}','%')
         order by num desc
         limit 0,10;
+        
+select * from board where num=1;        
+        

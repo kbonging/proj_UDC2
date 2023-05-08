@@ -22,7 +22,7 @@ body *:not(h3){
 }
 .div_comm{
 	margin-bottom:30px;
-	border:none;
+	border-bottom: none;
 }
 .div3{
 	border:none;

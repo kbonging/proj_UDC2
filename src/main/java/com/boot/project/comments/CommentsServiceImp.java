@@ -3,6 +3,7 @@ package com.boot.project.comments;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,5 +21,10 @@ public class CommentsServiceImp implements CommentsService{
     @Override
     public int select_maxCommentNo() {
         return this.commentsDAO.select_maxCommentNo();
+    }
+
+    @Override
+    public List<Map<String, Object>> select_commentsList(Map<String, Object> map) {
+        return this.commentsDAO.select_commentsList(map);
     }
 }

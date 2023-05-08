@@ -16,4 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="select_maxCommentNo" resultType="_int">
         select max(commentNo) from comments;
     </select>
+
+    <!-- 댓글 목록 -->
+    <select id="select_commentsList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select c.*, m.nick
+        from comments c join member m
+        on c.userid = m.userid
+        where boardNo=#{boardNo}
+        order by groupNo desc, sortNo asc;
+    </select>
 </mapper>
