@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.project.comments.CommentsDAO">
+
+    <!-- 댓글 등록 -->
+    <insert id="commentsInsert" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="num">
+        insert into comments(content, regTM, groupNo, step, sortNo, boardNo, userid)
+        values(#{content}, now(), #{groupNo}, 0, 0, #{boardNo}, #{userid});
+    </insert>
+
+    <!-- 댓글 maxNum-->
+    <select id="select_maxCommentNo" resultType="_int">
+        select max(commentNo) from comments;
+    </select>
+</mapper>
