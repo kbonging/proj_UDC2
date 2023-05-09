@@ -43,3 +43,6 @@ select userid, userPwd from member where userid = 'lee' and userPwd = '1234';
 update member
 set nick='조대한'
 where num=24;
+
+## 로그인 정보 가져오기
+select * from member  where userid = 'lee';

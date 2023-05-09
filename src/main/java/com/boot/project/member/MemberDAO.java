@@ -13,5 +13,5 @@ public interface MemberDAO {
     //로그인
     public Map<String, Object> memberLogin(Map<String, Object> map);
     //로그인한 회원 정보 조회
-    public Map<String, Object> selectBy_uId(Map<String, Object> map);
+    public Map<String, Object> selectBy_userid(Map<String, Object> map);
 }

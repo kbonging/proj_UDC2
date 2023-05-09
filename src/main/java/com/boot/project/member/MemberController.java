@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -128,9 +129,15 @@ public class MemberController {
 
 	///////// 마이페이지 시작 ////////////
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(HttpSession session){
+	public String myPage(HttpSession session, Model model){
 
+		String userid = session.getAttribute("userid").toString();
+		Map<String,Object> map = new HashMap<>();
+		map.put("userid", userid);
 
+	 	Map<String,Object> userMap =  memberService.selectBy_userid(map);
+		System.out.println("userMap : "+userMap.toString());
+		model.addAttribute("userMap", userMap);
 
 		return "member/myPage";
 	}

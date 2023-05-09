@@ -18,7 +18,7 @@
                 <div class="second_regi">
                     <div class="wrapper">
                         <div class="text">
-                            lee
+                            ${userMap.userid}
                         </div>
                         <p class="p3" id="idCheckEX"></p>
                     </div>
@@ -27,13 +27,13 @@
                     <p class="p1">이름</p>
                 </div>
                 <div class="second_regi">
-                    이창섭
+                    ${userMap.uName}
                 </div>
                 <div class="first_regi">
                     <p class="p1">닉네임</p>
                 </div>
                 <div class="second_regi">
-                    닉쓸 자리
+                    ${userMap.nick}
                 </div>
 
              <div class="first_regi">
@@ -41,7 +41,7 @@
                  </div>
                  <div class="second_regi">
                     <span>
-                    이메일 자리
+                    ${userMap.uEmail}
                     </span>
                  </div>
 
@@ -50,7 +50,7 @@
                 </div>
                 <div class="second_regi">
                     <span>
-                    생일 들갈 자리
+                    ${userMap.jumin}
                     </span>
                 </div>
                 <div class="first_regi">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="second_regi">
                     <span>
-                    번호들어갈자리
+                    ${userMap.tel}
                     </span>
                     <input class="mobile" id="tel" type="hidden" name="tel">
                 </div>
@@ -66,9 +66,9 @@
                     <p class="p1">주소</p>
                 </div>
                 <div id="coordXY">
-                우편번호들
-                주소
-                상세주소
+                ${userMap.zipcode}<br>
+                ${userMap.address}<br>
+                ${userMap.locationName}
                 </div>
                 <div class="multi_radio1"></div>
                 <div class="multi_radio2">

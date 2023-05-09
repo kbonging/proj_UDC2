@@ -177,7 +177,7 @@ public class BoardController {
             boardMap.put("commentsCnt", commentsCnt);
         }
 
-        System.out.println("list 목록 :"+list.toString());
+        //System.out.println("list 목록 :"+list.toString());
         if(category==0){
             map.put("category", "All");
         }else if (category==1) {
