@@ -27,4 +27,14 @@ public class CommentsServiceImp implements CommentsService{
     public List<Map<String, Object>> select_commentsList(Map<String, Object> map) {
         return this.commentsDAO.select_commentsList(map);
     }
+
+    @Override
+    public int select_commentsCnt(Map<String, Object> map) {
+        return this.commentsDAO.select_commentsCnt(map);
+    }
+
+    @Override
+    public int delete_comments(Map<String, Object> map) {
+        return this.commentsDAO.delete_comments(map);
+    }
 }

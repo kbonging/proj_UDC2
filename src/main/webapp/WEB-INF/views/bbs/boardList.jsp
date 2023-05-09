@@ -97,7 +97,11 @@
                                                 <td style="color:red">삭제된 글 입니다.</td>
                                             </c:when>
                                             <c:otherwise>
-										        <td onclick="read(${listMap.num})" class="subject">${listMap.subject }</td>
+										        <td onclick="read(${listMap.num})" class="subject">${listMap.subject }
+										            <c:if test="${listMap.commentsCnt > 0}">
+										            &nbsp;<small style="color:red">[${listMap.commentsCnt}]</small>
+										            </c:if>
+										        </td>
                                             </c:otherwise>
                                         </c:choose>
 										<!--

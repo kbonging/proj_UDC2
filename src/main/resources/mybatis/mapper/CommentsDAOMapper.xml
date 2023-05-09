@@ -25,4 +25,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where boardNo=#{boardNo}
         order by groupNo desc, sortNo asc;
     </select>
+
+    <!-- 해당 게시글의 댓글 개수 구하기 -->
+    <select id="select_commentsCnt" parameterType="java.util.HashMap" resultType="_int">
+        select count(*)
+        from comments
+        where boardNo=#{num};
+    </select>
+
+    <!-- 댓글 삭제 -->
+    <update id="delete_comments" parameterType="java.util.HashMap">
+        update comments
+        set delCheck = 'Y'
+        where commentNo=${commentNo} and delCheck= 'N'
+    </update>
 </mapper>

@@ -123,7 +123,7 @@ a.navbar-brand {
 						<button type="button" class="btn btn-outline-light me-2"
 							onclick="location.href='/logout'">Logout</button>
 						<button type="button" class="btn btn-outline-light me-2"
-							onclick="location.href='../jsp/info.jsp'">My Page</button>
+							onclick="location.href='<c:url value='/myPage'/>'">My Page</button>
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-outline-light me-2"

@@ -13,4 +13,5 @@ public interface BoardService {
     public int delete_Board(Map<String, Object> map);
     public int select_countAll(Map<String, Object> map);
     public int select_countCategory(Map<String, Object> map);
+    public int update_readCnt(Map<String,Object> map);
 }

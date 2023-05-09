@@ -22,4 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select userid, userPwd from member where userid = #{userid} and userPwd = #{userPwd}
     </select>
 
+    <!-- 로그인한 회원 조회 -->
+    <select id="selectBy_uId" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select * from member where userid = #{userid}
+    </select>
 </mapper>

@@ -50,4 +50,9 @@ public class BoardServiceImp implements BoardService{
     public int select_countCategory(Map<String, Object> map) {
         return this.boardDAO.select_countCategory(map);
     }
+
+    @Override
+    public int update_readCnt(Map<String, Object> map) {
+        return this.boardDAO.update_readCnt(map);
+    }
 }

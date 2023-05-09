@@ -228,6 +228,33 @@
 	transform: translateY(2px);
 }
 
+/*myPage.css*/
+.wr_submit {
+	width: 622px;
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 20px;
+	margin: 0px;
+	margin-top: 10px;
+	vertical-align: middle;
+	border: 1px solid #9d9d9d;
+	border-radius: 5px 5px 5px 5px;
+	font-size:10pt;
+	font-weight: 400;
+	cursor: pointer;
+	background-color: white;
+}
+
+.wr_submit:hover {
+	background-color: #eeeeee;
+}
+
+.wr_submit:active {
+	transform: translateY(2px);
+}
+
+/*         */
+
 .multi_radio2 {
 	border-top: 1px solid #eeeeee;
 	margin-top: 10px;

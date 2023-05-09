@@ -66,6 +66,7 @@ set regTM=now()
 where num=61;
 #############################
 
+
 select * from member;
 select m.nick, b.*
 from member m join board b
@@ -132,5 +133,10 @@ select m.nick, b.*
         order by num desc
         limit 0,10;
         
-select * from board where num=1;        
+select * from board where num=1;     
+
+######## 조회수 증가 ##########
+update board
+set readCnt = readCnt + 1
+where num=1;
         

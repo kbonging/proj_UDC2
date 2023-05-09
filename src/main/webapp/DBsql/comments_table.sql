@@ -20,9 +20,16 @@ desc comments;
 insert into comments(content, regTM, groupNo, step, sortNo, boardNo, userid)
 values('첫 댓글~', now(), 1, 0, 0, 1, 'lee');
 
+select * from comments;
+
 select c.*, m.nick
 from comments c join member m
 on c.userid = m.userid 
-where boardNo=59;
+where boardNo=59
+order by groupNo desc, sortNo asc;
 
 select max(commentNo) from comments;
+
+select count(*)
+from comments
+where boardNo=61;

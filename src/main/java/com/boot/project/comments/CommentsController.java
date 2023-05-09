@@ -5,10 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +15,7 @@ import java.util.Map;
 public class CommentsController {
     private final CommentsService commentsService;
 
+    // 댓글 등록
     @RequestMapping(value = "/comments", method = RequestMethod.POST)
     @ResponseBody
     public String insert_comments(@RequestParam Map<String, Object> map){
@@ -38,6 +36,7 @@ public class CommentsController {
         return Integer.toString(cnt);
     }
 
+    // 댓글 목록
     @RequestMapping(value = "/GET_commentsList", method = RequestMethod.GET)
     @ResponseBody
     public String GET_commentsList(@RequestParam Map<String, Object> map){
@@ -48,10 +47,39 @@ public class CommentsController {
 
         JSONArray jsonArray = new JSONArray();
 
-        for(Map<String, Object> listMap : list){
+//        for(Map<String, Object> listMap : list){
+//            jsonArray.put(listMap);
+//        }
+
+
+        for (int i = 0; i < list.size(); i++) {
+            Map<String, Object> listMap = list.get(i);
+            String regTM = listMap.get("regTM").toString();
+            regTM = regTM.substring(0,10) + " " + regTM.substring(11);
+            System.out.println("DB에서 가져온 등록일을  substring 을 사용함 : "+regTM);
+            listMap.put("regTM", regTM);
             jsonArray.put(listMap);
         }
 
         return jsonArray.toString();
+    }
+
+    // 댓글 삭제
+    @RequestMapping(value = "/deleteComProc", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteComProc(@RequestParam Map<String, Object> map){
+        System.out.println("댓글 삭제 메서드 map : "+map.toString());
+
+        int cnt = commentsService.delete_comments(map);
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("cnt", cnt);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return jsonObject.toString();
+
     }
 }

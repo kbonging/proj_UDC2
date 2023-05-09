@@ -126,5 +126,14 @@ public class MemberController {
 	}
 	/////////// 로그아웃 처리 끝  /////////////
 
+	///////// 마이페이지 시작 ////////////
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	public String myPage(HttpSession session){
+
+
+
+		return "member/myPage";
+	}
+	///////// 마이페이지 끝 ////////////
 
 }	//MemberController 끝

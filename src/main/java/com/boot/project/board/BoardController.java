@@ -1,5 +1,6 @@
 package com.boot.project.board;
 
+import com.boot.project.comments.CommentsService;
 import com.boot.project.common.ConstUtill;
 import com.boot.project.common.PaginationInfo;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.*;
 public class BoardController {
     // RequiredArgsConstructor 로 생성자 주입
     private final BoardService boardService;
+    private final CommentsService commentsService;
 
     // 날짜
     private static Date currentDate = new Date();
@@ -167,8 +169,15 @@ public class BoardController {
         for (Map<String, Object> map2 : list) {
             System.out.println(map2);
         }*/
-        //System.out.println("list 목록 :"+list.toString());
 
+        // 해당 게시글의 댓글 개수 구하기
+        for (int i = 0; i < list.size(); i++) {
+            Map<String, Object> boardMap = list.get(i);
+            int commentsCnt = commentsService.select_commentsCnt(boardMap);
+            boardMap.put("commentsCnt", commentsCnt);
+        }
+
+        System.out.println("list 목록 :"+list.toString());
         if(category==0){
             map.put("category", "All");
         }else if (category==1) {
@@ -223,6 +232,10 @@ public class BoardController {
     public String boardDetail_GET(@RequestParam Map<String, Object> map, Model model){
         //System.out.println("boardDetail_GET - map.toString() : "+map.toString());
         String category = "";
+
+        //조회수 증가
+        boardService.update_readCnt(map);
+
         Map<String, Object> boardMap = boardService.selectByBoardNum(map);
 
         // 번호로 조회한 글 정보가 있을경우
@@ -243,6 +256,8 @@ public class BoardController {
             }
 
             boardMap.put("category", category);
+            
+
 
         }
 

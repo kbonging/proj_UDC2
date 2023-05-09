@@ -23,4 +23,6 @@ public interface BoardDAO {
     public int select_countAll(Map<String, Object> map);
     // 카테고리별 게시글 개수 조회
     public int select_countCategory(Map<String, Object> map);
+    // 조회수 증가
+    public int update_readCnt(Map<String,Object> map);
 }
