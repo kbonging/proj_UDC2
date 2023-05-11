@@ -45,4 +45,4 @@ set nick='조대한'
 where num=24;
 
 ## 로그인 정보 가져오기
-select * from member  where userid = 'lee';
+select * from member  where userid = 'bong';

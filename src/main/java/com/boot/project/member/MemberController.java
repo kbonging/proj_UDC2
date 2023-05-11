@@ -131,12 +131,25 @@ public class MemberController {
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPage(HttpSession session, Model model){
 
+		// 현재 로그인한 회원 아이디
 		String userid = session.getAttribute("userid").toString();
 		Map<String,Object> map = new HashMap<>();
 		map.put("userid", userid);
 
+		// 로그인한 회원의 정보들이 담긴 Map
 	 	Map<String,Object> userMap =  memberService.selectBy_userid(map);
-		System.out.println("userMap : "+userMap.toString());
+
+		// 주민번호를 가져와서 생일만 추출
+		String jumin = userMap.get("jumin").toString();
+		String birthday = jumin.substring(0,6);
+		userMap.put("birthday",birthday);
+
+		// 전화번호 '-' 표시 넣어 표시하기
+		String tel = userMap.get("tel").toString();
+		tel = tel.substring(0, 3) + "-" + tel.substring(3, 7) + "-" +tel.substring(7);
+		userMap.put("tel", tel);
+		//System.out.println("userMap : "+userMap.toString());
+
 		model.addAttribute("userMap", userMap);
 
 		return "member/myPage";

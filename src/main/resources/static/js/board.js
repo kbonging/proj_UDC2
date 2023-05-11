@@ -160,11 +160,19 @@ $(function(){
     // 페이지 번호 클릭시 실행할 함수
     function pageProc(curPage){
         let category = $('#category').val();
+        let search_target = $('#search_target').val();
+        let search_keyword = $('#search_keyword').val().trim();
 
         if(category=="Q&A"){
             category="Q%26A";
         }
         let url = "boardList?category="+category;
+
+        if(search_keyword != null && search_keyword != ""){
+            url += "&search_target="+search_target;
+            url += "&search_keyword="+search_keyword;
+        }
+
         url += "&nowPage="+curPage;
         location.href=url;
     }

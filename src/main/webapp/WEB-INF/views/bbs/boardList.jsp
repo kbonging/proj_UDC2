@@ -159,7 +159,7 @@
 								<form name="searchFrm" method="get" id="searchFrm">
 									<input type="hidden" id="category" name="category" class="category" value="${map.category}" >
 									<div class="addons2" style="display: block;">
-										<select name="search_target" class="sel1">
+										<select name="search_target" class="sel1" id="search_target">
 											<option value="subject"
                                                 <c:if test="${map.search_target == 'subject' }">
                                                 selected="selected"
