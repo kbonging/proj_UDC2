@@ -156,4 +156,54 @@ public class MemberController {
 	}
 	///////// 마이페이지 끝 ////////////
 
+	///////// 회원 정보 수정 페이지 보여주기 시작 ////////////
+
+	@RequestMapping(value = "/memModify", method = RequestMethod.GET)
+	public String memModify(HttpSession session, Model model){
+		String userid = session.getAttribute("userid").toString();
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("userid", userid);
+
+		// 로그인한 회원 정보 가져오기
+		Map<String, Object> userMap = memberService.selectBy_userid(map);
+
+		// 디버깅
+		System.out.println("/memModify - 로그인한 회원 정보 :"+userMap.toString());
+
+		// DB에서 이메일을 가져와 '@' 기준으로 잘라서 각각 userMap 에 저장
+		String uEmail = (String)userMap.get("uEmail");
+		String[] emailArr =  uEmail.split("@");
+		String uEmail_01 = emailArr[0];
+		String uEmail_02 = emailArr[1];
+
+		userMap.put("uEmail_01", uEmail_01);
+		userMap.put("uEmail_02", uEmail_02);
+
+		// DB에서 주민번호를 가져와 '-' 기준으로 잘라서 각각 userMap 에 저장
+		String jumin = (String)userMap.get("jumin");
+		String[] juminArr =  jumin.split("-");
+		String jumin_01 = juminArr[0];
+		String jumin_02 = juminArr[1];
+
+		userMap.put("jumin_01", jumin_01);
+		userMap.put("jumin_02", jumin_02);
+
+		// 전화번호가져와서 나누기
+		String tel = (String)userMap.get("tel");
+		String mobile1 = tel.substring(0, 3);
+		String mobile2 =tel.substring(3, 7);
+		String mobile3 =tel.substring(7);
+
+		userMap.put("mobile1", mobile1);
+		userMap.put("mobile2", mobile2);
+		userMap.put("mobile3", mobile3);
+
+		System.out.println("뷰로 보낼 userMap :"+userMap.toString());
+		model.addAttribute("userMap", userMap);
+
+		return "member/memModify";
+	}
+	///////// 회원 정보 수정 페이지 보여주기 끝 ////////////
+
 }	//MemberController 끝

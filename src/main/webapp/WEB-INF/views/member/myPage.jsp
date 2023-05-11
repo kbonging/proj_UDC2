@@ -4,9 +4,11 @@
 
 <!-- content -->
 <link rel="stylesheet" href="style/table.css">
+<script type="text/javascript" src="<c:url value='/js/jquery-3.6.0.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/myPage.js' />"></script>
 <div class="container">
 	<div class="tab">
-		<button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">회원정보 보기</button>
+		<button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">회원정보</button>
 		<!--
 		<button class="tablinks" onclick="openCity(event, 'Paris')">작성한 글</button>
 		<button class="tablinks" onclick="openCity(event, 'Seoul')">작성한 댓글</button>
@@ -61,11 +63,7 @@
 				</colgroup>
 				<tr>
 					<td>
-						<button class="btn default"
-							onclick="window.open('changeNick.jsp',
-							 'window_name',
-							 'toolbar=no, menubar=no, scrollbars=no, resizable=no, width=500, height=300, location=no, status=no');">
-							 회원정보 수정</button>
+						<button class="btn default" id="memModify">회원정보 수정</button>
 					</td>
 					<td>
 						<button class="btn default"
@@ -81,6 +79,15 @@
 							 'toolbar=no, menubar=no, scrollbars=no, resizable=no, width=815, height=360, location=no, status=no');">
 							 회원탈퇴</button>
 					</td>
+					<!-- 기존꺼
+					<td>
+                        <button class="btn default"
+                            onclick="window.open('changeNick.jsp',
+                             'window_name',
+                             'toolbar=no, menubar=no, scrollbars=no, resizable=no, width=500, height=300, location=no, status=no');">
+                             회원정보 수정</button>
+                    </td>
+                    -->
 				</tr>
 			</table>
 		</div>
