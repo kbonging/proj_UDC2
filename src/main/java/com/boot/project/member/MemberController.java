@@ -169,7 +169,7 @@ public class MemberController {
 		Map<String, Object> userMap = memberService.selectBy_userid(map);
 
 		// 디버깅
-		System.out.println("/memModify - 로그인한 회원 정보 :"+userMap.toString());
+		//System.out.println("/memModify - 로그인한 회원 정보 :"+userMap.toString());
 
 		// DB에서 이메일을 가져와 '@' 기준으로 잘라서 각각 userMap 에 저장
 		String uEmail = (String)userMap.get("uEmail");
@@ -199,11 +199,24 @@ public class MemberController {
 		userMap.put("mobile2", mobile2);
 		userMap.put("mobile3", mobile3);
 
-		System.out.println("뷰로 보낼 userMap :"+userMap.toString());
+		//System.out.println("뷰로 보낼 userMap :"+userMap.toString());
 		model.addAttribute("userMap", userMap);
 
 		return "member/memModify";
 	}
 	///////// 회원 정보 수정 페이지 보여주기 끝 ////////////
+
+
+	///////////// 회원 정보 수정 처리 시작 ///////////
+
+	@RequestMapping(value = "/memModify", method = RequestMethod.POST)
+	public String memModify_POST(@RequestParam Map<String, Object> map, Model model){
+		System.out.println("memModify_POST - map:"+map.toString());
+
+
+		return "";
+	}
+	///////////// 회원 정보 수정 처리 끝 ///////////
+
 
 }	//MemberController 끝

@@ -63,7 +63,7 @@ where num=22;
 ########## 00 초에 들록되면 페이지 오류남 #############
 update board
 set regTM=now()
-where num=61;
+where num=68;
 #############################
 
 

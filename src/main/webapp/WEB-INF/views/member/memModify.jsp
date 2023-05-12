@@ -11,7 +11,7 @@
 	<div class="div0">
 		<h3>회원 수정</h3>
 		<br>
-		<form id="regist" method="post">
+		<form id="memModifyFrm" method="post">
                 <div class="first_regi">
                     <p class="p1">아이디</p>
                 </div>
@@ -104,7 +104,7 @@
              </div> 유효성 검사 칸-->
                 <div class="multi_radio1"></div>
                 <div class="multi_radio2">
-                    <input type="submit" id="wr_submit" value="회원수정">
+                    <input type="submit" id="wr_submit" class="memModifyBtn" value="회원수정">
              </div>
 			 <input type ="hidden" name="chkId" id="chkId"> <!-- 아이디 체크 유무 -->
 			 <input type ="hidden" name="chNick" id="chNick"> <!-- 닉네임 체크 유무 -->

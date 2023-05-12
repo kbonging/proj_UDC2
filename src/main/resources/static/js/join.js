@@ -99,7 +99,7 @@ $('#wr_submit').click(function() {
     let email2 = $('#email2').val();
     $('#uEmail').val(email1 + "@" + email2);
 
-//    alert($('#uEmail').val(email1 + "@" + email2));
+ //   alert($('#uEmail').val(email1 + "@" + email2));
 
     // 주민번호 합치기
     let jumin1 = $('#jumin1').val();
@@ -114,7 +114,7 @@ $('#wr_submit').click(function() {
     let mobile3 = $('#mobile3').val();
     $('#tel').val(mobile1+mobile2+mobile3);
 
-//    alert($('#tel').val(mobile1+mobile2+mobile3));
+ //   alert($('#tel').val(mobile1+mobile2+mobile3));
 
     if ($('#userid').val().length < 1) {
         alert('아이디를 입력하세요');
