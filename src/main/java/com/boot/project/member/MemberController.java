@@ -208,15 +208,38 @@ public class MemberController {
 
 
 	///////////// 회원 정보 수정 처리 시작 ///////////
-
 	@RequestMapping(value = "/memModify", method = RequestMethod.POST)
 	public String memModify_POST(@RequestParam Map<String, Object> map, Model model){
 		System.out.println("memModify_POST - map:"+map.toString());
 
 
-		return "";
+		String msg = "회원정보 수정 중 문제가 발생했습니다. 다시 시도해주세요.\\\\n만일 문제가 계속될 경우 고객센터(02-1234-5678)로 연락해주세요.";
+		String url = "/memModify";
+
+		// 회원정보 수정 메서드
+		int cnt = memberService.memberUpdate(map);
+
+		if(cnt > 0){
+			msg="회원정보 수정 완료되었습니다.";
+			url="/myPage";
+		}
+
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
 	}
 	///////////// 회원 정보 수정 처리 끝 ///////////
 
+
+	////////////  비밀번호 변경 페이지 보여주기 시작 /////////////
+	@RequestMapping(value = "/changePwd", method = RequestMethod.GET)
+	public String changePwd(HttpSession session, Model model){
+		String userid = session.getAttribute("userid").toString();
+		model.addAttribute("userid",userid);
+
+		return "member/changePwd";
+	}
+	////////////  비밀번호 변경 페이지 보여주기 끝 /////////////
 
 }	//MemberController 끝

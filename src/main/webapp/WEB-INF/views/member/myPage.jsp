@@ -66,11 +66,7 @@
 						<button class="btn default" id="memModify">회원정보 수정</button>
 					</td>
 					<td>
-						<button class="btn default"
-							onclick="window.open('changePwd.jsp',
-							 'window_name',
-							 'toolbar=no, menubar=no, scrollbars=no, resizable=no, width=815, height=560, location=no, status=no');">
-							 비밀번호 변경</button>
+						<button class="btn default" id="changePwd">비밀번호 변경</button>
 					</td>
 					<td>
 						<button class="btn default"

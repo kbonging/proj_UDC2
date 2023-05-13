@@ -18,4 +18,7 @@ public interface MemberService {
 
     //로그인한 회원 정보 조회
     public Map<String, Object> selectBy_userid(Map<String, Object> map);
+
+    // 회원정보 수정
+    public int memberUpdate(Map<String, Object> map);
 }

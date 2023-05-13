@@ -5,8 +5,14 @@ $(function() {
     $('#sample6_postcode').prop('readonly', true);
     $('#sample6_address').prop('readonly', true);
 
+    /* 마이페이지에서 회원정보 수정 버튼 (수정페이지로 이동) myPage.jsp*/
     $('#memModify').click(function(){
         location.href="/memModify";
+    });
+
+    /* 마이페이지에서 비밀번호 변경 버튼 (비밀번호 변경페이지로 이동) myPage.jsp*/
+    $('#changePwd').click(function(){
+        location.href="/changePwd";
     });
 
     ////////////// 이메일 select 시작//////////////

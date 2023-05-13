@@ -49,4 +49,9 @@ public class MemberServiceImp implements MemberService {
     public Map<String, Object> selectBy_userid(Map<String, Object> map) {
         return this.memberDAO.selectBy_userid(map);
     }
+
+    @Override
+    public int memberUpdate(Map<String, Object> map) {
+        return this.memberDAO.memberUpdate(map);
+    }
 }

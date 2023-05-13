@@ -26,4 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectBy_userid" parameterType="java.util.HashMap" resultType="java.util.HashMap">
         select * from member where userid = #{userid}
     </select>
+
+    <!-- 회원 수정 (update) -->
+    <update id="memberUpdate" parameterType="java.util.HashMap">
+        update member
+        set uName=#{uName}, nick=#{nick}, uEmail=#{uEmail}, jumin=#{jumin}, tel=#{tel}, zipcode=#{zipcode}, address=#{address}, locationName=#{locationName}
+        where userid=#{userid};
+    </update>
 </mapper>
