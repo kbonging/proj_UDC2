@@ -54,4 +54,27 @@ public class MemberServiceImp implements MemberService {
     public int memberUpdate(Map<String, Object> map) {
         return this.memberDAO.memberUpdate(map);
     }
+
+    @Override
+    public int checkPwd(String userid, String pwd) {
+        String dbPwd = this.memberDAO.selectPwd(userid);
+
+        int result = 0;
+        if(dbPwd !=null && !dbPwd.isEmpty()){
+            if(dbPwd.equals(pwd)){
+                result = MemberService.LOGIN_OK;
+            }else{
+                result = MemberService.DISAGREE_PWD;
+            }
+        }else{
+            result = MemberService.NONE_USERID;
+        }
+
+        return result;
+    }
+
+    @Override
+    public int updatePwd(Map<String, Object> map) {
+        return this.memberDAO.updatePwd(map);
+    }
 }

@@ -16,4 +16,10 @@ public interface MemberDAO {
     public Map<String, Object> selectBy_userid(Map<String, Object> map);
     // 회원정보 수정
     public int memberUpdate(Map<String, Object> map);
+    // 해당유저 비밀번호 가져오기
+    public String selectPwd(String userid);
+
+    // 비밀번호 변경
+    public int updatePwd(Map<String, Object> map);
+
 }

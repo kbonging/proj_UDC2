@@ -242,4 +242,43 @@ public class MemberController {
 	}
 	////////////  비밀번호 변경 페이지 보여주기 끝 /////////////
 
+
+	//////////////// 비밀번호 변경 처리 시작 ///////////////////
+
+	@RequestMapping(value = "/changePwd", method = RequestMethod.POST)
+	public String changePwd_POST(@RequestParam Map<String, Object> map,
+								 HttpSession session, Model model){
+
+		System.out.println("changePwd_POST - map:"+map.toString());
+
+		// 현재 로그인한 회원 아이디
+		String userid = session.getAttribute("userid").toString();
+		map.put("userid", userid);
+
+		// 사용자 입력 패스워드
+		String pwd = (String) map.get("currentPwd");
+
+		int result = memberService.checkPwd(userid, pwd);
+
+		String msg = "비밀번호 체크 실패", url = "/changePwd";
+
+		if(result == MemberService.LOGIN_OK){ // 비밀번호 일치할때
+			int cnt = memberService.updatePwd(map);
+
+			if(cnt > 0){ // 비밀번호 변경이 되면
+				msg = "비밀번호 변경되었습니다.";
+				url = "/myPage";
+			}else{
+				msg = "비밀번호 변경 실패";
+			}
+		}else if(result == MemberService.DISAGREE_PWD){ // 비밀번호 불 일치
+			msg="비밀번호가 일치하지않습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+	}
+	//////////////// 비밀번호 변경 처리 끝 ///////////////////
+	
 }	//MemberController 끝

@@ -46,3 +46,9 @@ where num=24;
 
 ## 로그인 정보 가져오기
 select * from member  where userid = 'bong';
+
+
+## 회원수정
+update member
+set uName='이창섭', nick='차푸소푸', uEmail='', jumin='', tel='', zipcode='', address='', locationName=''
+where userid='lee';

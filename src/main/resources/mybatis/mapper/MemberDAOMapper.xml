@@ -33,4 +33,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set uName=#{uName}, nick=#{nick}, uEmail=#{uEmail}, jumin=#{jumin}, tel=#{tel}, zipcode=#{zipcode}, address=#{address}, locationName=#{locationName}
         where userid=#{userid};
     </update>
+
+    <!-- 해당유저 비밀번호 가져오기 -->
+    <select id="selectPwd" parameterType="string" resultType="String">
+        select userPwd
+        from member
+        where userid = #{userid};
+    </select>
+
+    <update id="updatePwd" parameterType="java.util.HashMap">
+        update member
+        set userPwd=#{newPwd}
+        where userid = #{userid};
+    </update>
 </mapper>
