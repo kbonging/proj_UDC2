@@ -50,7 +50,7 @@
                     <p class="p1">이름</p>
                 </div>
                 <div class="second_regi">
-                    <input class="input1" id="uName" type="text" name="uName">
+                    <input class="input1" id="uName" type="text" name="uName" placeholder="한글만 사용가능합니다">
                 </div>
                 <!-- <div class = "realize">
              </div> 유효성 검사 칸-->

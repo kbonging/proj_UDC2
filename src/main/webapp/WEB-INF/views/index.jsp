@@ -26,14 +26,14 @@
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="article_card">
 						<div class="bg-pic">
-							<img src="<c:url value='/img/seventeen.jpg' />" alt="" aria-hidden="true" />
+							<img src="<c:url value='/img/taeyeon.jpg' />" alt="" aria-hidden="true" />
 						</div>
 						<div class="inner">
 							<div class="header">
 								<!-- <div class="prix">JOHN MAYER</div> -->
 							</div>
 							<div class="footer">
-								<span class="prix"><a href="cDetail.jsp?concertNo=" style="text-decoration: none; color:white;  text-shadow: 1px 1px 1px black;">SEVENTEEN</a></span>
+								<span class="prix"><a href="cDetail.jsp?concertNo=" style="text-decoration: none; color:white;  text-shadow: 1px 1px 1px black;">TAEYEON</a></span>
 								<span class="unit"> <!-- &euro; --></span>
 								<div>고척스카이돔</div>
 							</div>

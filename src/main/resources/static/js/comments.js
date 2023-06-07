@@ -15,11 +15,15 @@ $(function(){
     $('.commentBtn').click(function(){
         let userid = $('#sessionUserid').val();
         let boardNo = $('#boardNum').val();
+        let content = $('#content').val();
 
         // alert(userid +" , "+ boardNo);
 
         if(userid==null || userid==""){
             alert('로그인 후 사용가능합니다.');
+            return;
+        }else if(content.charAt(0)==" "|| content==""){
+            alert('댓글을 작성해주세요.');
             return;
         }else{
             $.ajax({

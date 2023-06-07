@@ -52,3 +52,13 @@ select * from member  where userid = 'bong';
 update member
 set uName='이창섭', nick='차푸소푸', uEmail='', jumin='', tel='', zipcode='', address='', locationName=''
 where userid='lee';
+
+## 로그인한 회원 비밀번호 가져오기
+select userPwd
+from member
+where userid = 'lee';
+
+## 비밀번호 변경
+update member
+set userPwd='123'
+where userid = 'lee';

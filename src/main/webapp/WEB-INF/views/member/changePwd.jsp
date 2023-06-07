@@ -18,17 +18,17 @@
 			</div>
 			<div class="div1">
 				<p class="p1">현재 비밀번호</p>
-				<input type="text" class="input1" id="currentPwd" name="currentPwd" placeholder="현재 비밀번호" />
+				<input type="password" class="input1" id="currentPwd" name="currentPwd" placeholder="현재 비밀번호" />
 				<p class="p2"></p>
 			</div>
 			<div class="div1">
 				<p class="p1">새 비밀번호</p>
-				<input type="text" class="input1" id="newPwd" name="newPwd" placeholder="새 비밀번호"/>
+				<input type="password" class="input1" id="newPwd" name="newPwd" placeholder="새 비밀번호"/>
 				<p class="p2"></p>
 			</div>
 			<div class="div1">
 				<p class="p1">새 비밀번호 확인</p>
-				<input type="text" class="input1" id="newPwdConfirm" name="newPwdConfirm" placeholder="새 비밀번호 확인"/>
+				<input type="password" class="input1" id="newPwdConfirm" name="newPwdConfirm" placeholder="새 비밀번호 확인"/>
 				<p class="p2"></p>
 			</div>
 			<div class=div3> 
