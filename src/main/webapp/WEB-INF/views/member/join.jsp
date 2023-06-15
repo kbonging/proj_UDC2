@@ -83,6 +83,19 @@
                         <option>nate.com</option>
                     </select>
                     </span>
+                    <div class="emDiv">
+                        <input class="wr_submit" id="sendEmail" type="button" value="이메일 인증번호 발송" />
+
+                        <div class="cerEmailDiv">
+                            <span>
+                                <input class="emailText" id="certificationNum" type="text" name="certificationNum" maxlength="8" placeholder="전송된 이메일의 인증번호를 입력하세요.">
+                                <input class="certificationBtn" id="certificationBtn" type="button" value="인증하기">
+                                <input class="certificationChkNum" id="certificationChkNum" type="text" >
+                                <input class="certificationChk" id="certificationChk" type="text" >
+                            </span>
+                        </div>
+                    </div>
+                    <p class="p1 certificationYES">이메일 인증 완료 되었습니다.</p>
                  </div>
 
                  <!-- <div class = "realize">
@@ -112,7 +125,6 @@
                         type="text" name="mobile3" maxlength="4">
                     </span>
                     <input class="mobile" id="tel" type="hidden" name="tel">
-                    <input class="chkNick" id="telAuthenticationBtn" type="button" onclick="" value="인증하기" />
                 </div>
                 <!-- <div class = "realize">
              </div> 유효성 검사 칸-->

@@ -197,6 +197,9 @@ $('#wr_submit').click(function() {
         $('#userid').focus();
         alert('중복된아이디입니다 다른 아이디를 사용해주세요.');
         event.preventDefault();
+    }else if($('#certificationChk').val() != 'Y'){
+        alert('이메일 인증을 해주세요.');
+        event.preventDefault();
     } else{
 
         if(confirm("회원가입하시겠습니까?")){
@@ -221,6 +224,75 @@ $('#wr_submit').click(function() {
     }*/
 
     }); //$('#wr_submit').click 끝
+
+    //////////////////////  이메일 인증 처리 시작 ///////////////////
+
+    $('.cerEmailDiv').hide();
+    $('.certificationYES').hide();
+
+    // 이메일 인증번호 발송버튼
+    $('#sendEmail').click(function(){
+
+         // 이메일 합치기
+        let email1 = $('#email1').val();
+        let email2 = $('#email2').val();
+        let sendEmail = email1 +"@"+ email2;
+
+        if (email1.length < 1 || email2.length < 1) {
+            alert('이메일을 입력하세요');
+            $('#email1').focus();
+            return;
+        }else{
+            $('#sendEmail').val("인증번호 재전송");
+
+            $('.cerEmailDiv').show();
+
+            $.ajax({
+                type:"GET",
+                url:"/email/sendEmail",
+                data:{
+                    "email":sendEmail
+                },
+                dataType:"JSON",
+
+                success:function(data) {
+                console.log(data);
+                let cerNum = data.ePw;
+                    $('#certificationChkNum').val(cerNum);
+                },
+                error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            }); //ajax 끝
+
+        }
+
+        alert("인증번호 발송 완료");
+
+    });
+
+    $('#certificationBtn').click(function(){
+
+
+        if($('#certificationNum').val() == $('#certificationChkNum').val()){
+            alert('이메일 인증 완료 되었습니다');
+
+            $('#email1').prop('readonly', true);
+            $('#email2').prop('readonly', true);
+            $('#emailDomain').hide();
+
+            $('.emDiv').hide();
+            $('.certificationYES').show();
+
+            $('#certificationChk').val('Y');
+        }else{
+            alert('인증번호를 확인해주세요');
+        }
+
+
+    });
+
+    //////////////////////  이메일 인증 처리 끝 ///////////////////
 
 }); // $(function()  끝//////////////////////////////////////////////
 

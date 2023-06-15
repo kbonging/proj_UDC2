@@ -32,6 +32,8 @@ dependencies {
 	implementation 'javax.servlet:jstl' 
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation group: 'org.json', name: 'json', version: '20090211'
+
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {
