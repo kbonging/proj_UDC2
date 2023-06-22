@@ -25,18 +25,18 @@ public class MemberController {
 	public String memberAgreement() {
 		return "member/agreement";
 	}
-	
-	
+
+
 	@RequestMapping(value = "/MemberAgreement", method = RequestMethod.POST)
 	public String memberAgreement_POST(@RequestParam String chkAgree) {
-		
+
 		String viewName = "";
 		if(chkAgree != null) {
 			viewName = "redirect:/member";
 		}else {
 			viewName = "redirect:/MemberAgreement";
 		}
-		
+
 		return viewName;
 	}
 
@@ -280,5 +280,5 @@ public class MemberController {
 		return "common/message";
 	}
 	//////////////// 비밀번호 변경 처리 끝 ///////////////////
-	
+
 }	//MemberController 끝

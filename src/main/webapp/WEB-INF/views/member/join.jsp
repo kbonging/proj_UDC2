@@ -90,8 +90,8 @@
                             <span>
                                 <input class="emailText" id="certificationNum" type="text" name="certificationNum" maxlength="8" placeholder="전송된 이메일의 인증번호를 입력하세요.">
                                 <input class="certificationBtn" id="certificationBtn" type="button" value="인증하기">
-                                <input class="certificationChkNum" id="certificationChkNum" type="text" >
-                                <input class="certificationChk" id="certificationChk" type="text" >
+                                <input class="certificationChkNum" id="certificationChkNum" type="hidden" >
+                                <input class="certificationChk" id="certificationChk" type="hidden" >
                             </span>
                         </div>
                     </div>
